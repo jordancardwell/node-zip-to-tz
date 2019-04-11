@@ -31,7 +31,12 @@
     "semi": false,
     "singleQuote": true
   },
-  "jest": {},
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/?(*.)+(spec|test).[tj]s?(x)"
+    ]
+  },
   "devDependencies": {
     "jest": "24.7.1",
     "jest-cli": "24.7.1",

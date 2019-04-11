@@ -6,6 +6,8 @@ We utilize the same source data in `zipcodes.json` and generate a map of only th
 
 Since we don't have an exhaustive list of all zipcodes, we use a binary search function to find where the zipcode lies within the map of upper bounds and return the result.
 
+This module assumes that the zipcode is valid. The original module returned `undefined` for unknown or invalid zipcodes, because we don't have an exhaustive list, we'll return a timezone for potentially invalid zipcodes.
+
 This module basically trades space for time as the lookup isn't a direct attribute read, but a binary search of the optimized zipcode map keys until we find what range the target zipcode lies in.
 
 
