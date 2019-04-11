@@ -1,6 +1,6 @@
 # zip-to-tz
 
-This is a re-implementation of [DoubleDor's `node-zipcode-to-timezone`](https://github.com/DoubleDor/node-zipcode-to-timezone), but optimized for space so that you can use it in the browser.
+This is a re-implementation of [DoubleDor's `node-zipcode-to-timezone`](https://github.com/DoubleDor/node-zipcode-to-timezone), but optimized for space so that you can use it in the browser with less bloat.
 
 We utilize the same source data in `zipcodes.json` and generate a map of only the upperbounds. The numercially ordered zipcodes (indexes into `timezone-map.json`), don't produce timezone indexes that are strictly monotonically increasing (for obvious reasons), so while this isn't a perfect solution, the Gzipped size of the optimized zipcode map is **2.8%** of the original Gzipped zipcode map.
 
