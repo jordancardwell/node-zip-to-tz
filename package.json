@@ -1,0 +1,42 @@
+{
+  "name": "zip-to-tz",
+  "version": "0.0.0",
+  "description": "Converts a zipcode to a timezone",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "publish": "np",
+    "generate": "node ./generate-upper-bounded-zip-code-map.js",
+    "format": "prettier --write \"./**/*.js\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:jordancardwell/node-zip-to-tz.git"
+  },
+  "keywords": [
+    "timezone",
+    "tz",
+    "zipcode",
+    "convert",
+    "optimized"
+  ],
+  "author": "Jordan Cardwell <jordancardwell@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jordancardwell/node-zip-to-tz/issues"
+  },
+  "homepage": "https://github.com/jordancardwell/node-zip-to-tz#readme",
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
+  "jest": {},
+  "devDependencies": {
+    "jest": "24.7.1",
+    "jest-cli": "24.7.1",
+    "lodash": "4.17.11",
+    "np": "4.0.2",
+    "prettier": "1.16.4"
+  }
+}
