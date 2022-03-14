@@ -1,13 +1,18 @@
 {
   "name": "zip-to-tz",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Converts a zipcode to a timezone",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "jest",
-    "release": "np",
+    "build": "npx tsc",
+    "format": "prettier --write \"./**/*.js\" ",
     "generate": "node ./generate-upper-bounded-zip-code-map.js",
-    "format": "prettier --write \"./**/*.js\" "
+    "release": "np",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,7 +23,8 @@
     "tz",
     "zipcode",
     "convert",
-    "optimized"
+    "optimized",
+    "browser"
   ],
   "author": "Jordan Cardwell <jordancardwell@gmail.com>",
   "license": "MIT",
@@ -32,16 +38,29 @@
     "singleQuote": true
   },
   "jest": {
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/?(*.)+(spec|test).[tj]s?(x)"
-    ]
+    "roots": [
+      "<rootDir>"
+    ],
+    "testPathIgnorePatterns": [
+      "/dist/"
+    ],
+    "testRegex": "(__test__/.*|(\\.|/)(test|spec))\\.ts$",
+    "transform": {
+      "^.+\\.(ts)$": "ts-jest"
+    },
+    "testEnvironment": "node"
   },
   "devDependencies": {
-    "jest": "24.7.1",
-    "jest-cli": "24.7.1",
-    "lodash": "4.17.11",
+    "@types/node": "16",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "lodash": "^4.17.21",
     "np": "4.0.2",
-    "prettier": "1.16.4"
+    "prettier": "1.16.4",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@types/jest": "^27.4.1"
   }
 }

@@ -1,9 +1,11 @@
-const zipToTzMap = require('./zipcodes.json')
-const path = require('path')
-const fs = require('fs')
+import zipToTzMap from './zipcodes.json'
+import * as path from 'path'
+import { copyFileSync, writeFileSync } from 'fs'
+import PACKAGE from '../package.json'
 const FILENAME = 'upper-bounded-zip-code-map.json'
-const PACKAGE = require('./package.json')
-const ARCHIVED_FILENAME = FILENAME.split('.').join(`.v${PACKAGE.version}.${new Date().toISOString().split('T')[0]}.`)
+const ARCHIVED_FILENAME = FILENAME.split('.').join(
+  `.v${PACKAGE.version}.${new Date().toISOString().split('T')[0]}.`
+)
 
 console.log('FILENAME', FILENAME)
 console.log('ARCHIVED_FILENAME', ARCHIVED_FILENAME)
@@ -43,6 +45,10 @@ sortedKeys.forEach((key, ind) => {
 const currentPath = path.resolve(__dirname, FILENAME)
 const archivePath = path.resolve(__dirname, 'archive', ARCHIVED_FILENAME)
 console.log(`archiving previous to\n\t${archivePath}`)
-fs.copyFileSync(currentPath, archivePath)
+copyFileSync(currentPath, archivePath)
 console.log(`saving current to\n\t${currentPath}`)
-fs.writeFileSync(currentPath, JSON.stringify(upperBoundedTzToZipValueMap, null, 2), 'ascii')
+writeFileSync(
+  currentPath,
+  JSON.stringify(upperBoundedTzToZipValueMap, null, 2),
+  'ascii'
+)

@@ -1,8 +1,14 @@
-const upperBoundedValueMap = require('./upper-bounded-zip-code-map.json')
+import upperBoundedValueMap from './upper-bounded-zip-code-map.json'
 const upperBoundedValueMapKeys = Object.keys(upperBoundedValueMap)
 
-const returnIndexOrDirection = function(zipKeysArr, i, zip) {
-  let rtIndex, ltIndex, rtZip, ltZip, lteRtZip, gtLtZip
+type IndexOrDirection = number | 'L' | 'R'
+
+const returnIndexOrDirection = function(
+  zipKeysArr: string[],
+  i: number,
+  zip: number
+): IndexOrDirection {
+  let rtIndex, ltIndex, rtZip, ltZip, lteRtZip, gtLtZip, eqLtZip
   rtIndex = i
   ltIndex = i - 1
   rtZip = parseInt(zipKeysArr[rtIndex], 10)
@@ -12,18 +18,20 @@ const returnIndexOrDirection = function(zipKeysArr, i, zip) {
   lteRtZip = zip <= rtZip
   gtLtZip = zip > ltZip
   eqLtZip = zip === ltZip
+
   if (lteRtZip && gtLtZip) {
     return rtIndex
   } else if (eqLtZip) {
     return ltIndex
   } else if (zip <= ltZip) {
     return 'L'
-  } else if (zip > rtZip) {
+  } else {
+    // zip > rtZip
     return 'R'
   }
 }
 
-const binarySearch = function(zipKeysArr, zip) {
+const binarySearch = function(zipKeysArr: string[], zip: string): string {
   let start = 0,
     end = zipKeysArr.length - 1,
     zipNum = parseInt(zip, 10)
@@ -31,10 +39,10 @@ const binarySearch = function(zipKeysArr, zip) {
   // Iterate while start not meets end
   while (start <= end) {
     // Find the mid index
-    let mid = Math.floor((start + end) / 2)
+    const mid = Math.floor((start + end) / 2)
 
     // If zip is found to be mid or mid-1 return one of them
-    let indexOrDirection = returnIndexOrDirection(zipKeysArr, mid, zipNum)
+    const indexOrDirection = returnIndexOrDirection(zipKeysArr, mid, zipNum)
     if (indexOrDirection === mid || indexOrDirection === mid - 1) {
       return zipKeysArr[indexOrDirection]
     }
@@ -45,12 +53,10 @@ const binarySearch = function(zipKeysArr, zip) {
       end = mid - 1
     }
   }
-  return false
+  return ''
 }
 
-const getTimezoneIndex = function(zipString) {
-  const foundZipIndex = binarySearch(upperBoundedValueMapKeys, zipString)
-  return upperBoundedValueMap[foundZipIndex]
+export default function getTimezoneKey(zipString: string): string {
+  const foundZipKey = binarySearch(upperBoundedValueMapKeys, zipString)
+  return upperBoundedValueMap[foundZipKey]
 }
-
-module.exports = getTimezoneIndex

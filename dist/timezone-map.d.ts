@@ -1,0 +1,3 @@
+declare type Timezone = 'America/New_York' | 'America/Chicago' | 'America/Denver' | 'America/Los_Angeles' | 'America/Kentucky/Louisville' | 'America/Indiana/Indianapolis' | 'America/Detroit' | 'America/Boise' | 'America/Phoenix' | 'America/Anchorage' | 'Pacific/Honolulu' | 'America/Indiana/Knox' | 'America/Indiana/Winamac' | 'America/Indiana/Vevay' | 'America/Indiana/Marengo' | 'America/Indiana/Vincennes' | 'America/Indiana/Tell_City' | 'America/Indiana/Petersburg' | 'America/Menominee' | 'America/Shiprock' | 'America/Nome' | 'America/Juneau' | 'America/Kentucky/Monticello' | 'America/North_Dakota/Center' | 'America/Yakutat';
+declare const TimezoneMap: Record<string, Timezone>;
+export default TimezoneMap;

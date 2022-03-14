@@ -10,15 +10,14 @@ This module assumes that the zipcode is valid. The original module returned `und
 
 This module basically trades space for time as the lookup isn't a direct attribute read, but a binary search of the optimized zipcode map keys until we find what range the target zipcode lies in.
 
-
-
 |                   | entries | size  | size (gzipped) |
-|-------------------|---------|-------|----------------|
+| ----------------- | ------- | ----- | -------------- |
 | zipcodes map      | 41962   | 672KB | 107KB          |
 | upper bounded map | 1026    | 14KB  | 3KB            |
 
 e.g.
 **Instead of:**
+
 ```javascript
 {
   ...
@@ -45,7 +44,9 @@ e.g.
   ...
 }
 ```
+
 **We'd keep track of:**
+
 ```javascript
   ...
   '11914': 0,
@@ -74,6 +75,14 @@ var zipToTz = require( 'zip-to-tz' );
 var tz = zipToTz( '94110' );
 console.log( tz ); // America/Los_Angeles
 ```
+
+```
+import zipToTz from 'zip-to-tz'
+
+const tz = zipToTz( '94110' );
+console.log( tz ); // America/Los_Angeles
+```
+
 ## Other info
 
 This project uses the timezone list found here:
